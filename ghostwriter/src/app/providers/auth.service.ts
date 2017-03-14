@@ -24,10 +24,6 @@ export class AuthService {
     });
   }
 
-  isLoggedIn(){
-
-  }
-
   logout() {
     return this.af.auth.logout();
   }

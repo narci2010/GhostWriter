@@ -22,11 +22,9 @@ export class AuthComponent {
 
 	signup(f: NgForm){
 		this.af.signup(f.value).then((authData) => {
-
 			this.user.create(authData.uid, {
 				email: authData.auth.email
 			});
-			console.log("GOOD!")
 			this.router.navigate(['home'])
 		}).catch((error) => {
 			this.error = error
@@ -40,19 +38,24 @@ export class AuthComponent {
 
 		if (f.valid) {
 			this.af.login(f.value).then((authData) => {
-				console.log("GOOD!")
 				this.router.navigate(['home'])
-
 			}).catch((error:any) => {
-					this.error = error
-					console.log(error)
+				this.error = error
+				console.log(error)
 			});
 		}
 	}
 
 	loginGoogle(){
 		this.af.loginGoogle().then((authData) => {
-			console.log("GOOD!")
+			console.log(authData)
+			this.user.exists(authData.uid).then(exist => {
+				if(!exist){
+					this.user.create(authData.uid, {
+						email: authData.auth.email
+					})
+				}
+			})
 			this.router.navigate(['home'])
 		});
 	}
