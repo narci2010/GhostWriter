@@ -10,4 +10,5 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Ghost Writer';
   constructor(public router: Router) {}
+  
 }

@@ -1,3 +1,5 @@
-<p>
-  auth works!
-</p>
+<form #loginForm="ngForm" (ngSubmit)="signup(loginForm)" novalidate>
+	<input type="text" name="email" ngModel reqired pInputText/>
+	<input type="password" name="password" ngModel required pPassword/>
+	<button pButton label="Sign Up"></button>
+</form>

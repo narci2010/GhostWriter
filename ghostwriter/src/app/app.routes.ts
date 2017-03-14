@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { StoriesComponent } from './stories/stories.component';
 import { StoryComponent } from './story/story.component';
 
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './common/auth.guard';
 
 export const routes: Routes = [
   { path: '',       component: AuthComponent },
@@ -13,5 +13,5 @@ export const routes: Routes = [
   { path: 'home',   component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'stories',   component: StoriesComponent, canActivate: [AuthGuard] },
   { path: 'story',   component: StoryComponent, canActivate: [AuthGuard] },
-  { path: '**',     component: AuthComponent }
+  { path: '*',     component: AuthComponent }
 ];

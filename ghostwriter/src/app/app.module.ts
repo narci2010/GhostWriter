@@ -10,10 +10,18 @@ import { HomeComponent } from './home/home.component';
 import { StoriesComponent } from './stories/stories.component';
 import { StoryComponent } from './story/story.component';
 
+import { AuthService } from './providers/auth.service';
+import { UserService } from './providers/user.service';
+
 import { routes } from './app.routes';
 
+import { AuthGuard } from './common/auth.guard';
 
-import { AuthGuard } from './auth.guard';
+import { AngularFireModule } from 'angularfire2';
+
+import { firebaseConfig } from './common/firebase.config';
+
+import { InputTextModule, ButtonModule, PasswordModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -27,11 +35,23 @@ import { AuthGuard } from './auth.guard';
     BrowserModule,
     FormsModule,
     HttpModule,
+
+    AngularFireModule.initializeApp(firebaseConfig),
+
     RouterModule.forRoot(routes, {
       useHash: true
-    })
+    }),
+
+    InputTextModule,
+    ButtonModule,
+    PasswordModule
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard, 
+
+    AuthService, 
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
