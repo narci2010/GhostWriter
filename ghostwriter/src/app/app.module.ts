@@ -12,6 +12,9 @@ import { StoryComponent } from './story/story.component';
 
 import { routes } from './app.routes';
 
+
+import { AuthGuard } from './auth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,7 @@ import { routes } from './app.routes';
       useHash: true
     })
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
