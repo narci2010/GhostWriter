@@ -3,10 +3,7 @@ import {AngularFire} from 'angularfire2';
 
 @Injectable()
 export class UserService {
-  user = {
-    id: "",
-    email: ""
-  };
+  user
 
   constructor(public af: AngularFire) {
   }
@@ -15,8 +12,17 @@ export class UserService {
     this.af.database.list('/users').update(id, data);
   }
 
-  set(data) {
-    this.user = data;
+  load(id) {
+    return new Promise((resolve, reject) => {
+      this.af.database.object('/users/' + id).subscribe(snapshot => {
+        this.user = {
+          id: snapshot.$key,
+          email: snapshot.email,
+          stories: snapshot.stories
+        }
+        resolve()
+      });
+    })
   }
 
   get(){

@@ -25,7 +25,7 @@ export class AuthComponent {
 			this.user.create(authData.uid, {
 				email: authData.auth.email
 			});
-			this.router.navigate(['home'])
+			this.gohome(authData.uid)
 		}).catch((error) => {
 			this.error = error
 			console.log(error)
@@ -38,7 +38,7 @@ export class AuthComponent {
 
 		if (f.valid) {
 			this.af.login(f.value).then((authData) => {
-				this.router.navigate(['home'])
+				this.gohome(authData.uid)
 			}).catch((error:any) => {
 				this.error = error
 				console.log(error)
@@ -48,16 +48,21 @@ export class AuthComponent {
 
 	loginGoogle(){
 		this.af.loginGoogle().then((authData) => {
-			console.log(authData)
 			this.user.exists(authData.uid).then(exist => {
 				if(!exist){
 					this.user.create(authData.uid, {
 						email: authData.auth.email
 					})
 				}
+				this.gohome(authData.uid)
 			})
-			this.router.navigate(['home'])
 		});
+	}
+
+	gohome(uid){
+		this.user.load(uid).then(() => {
+			this.router.navigate(['home'])
+		})
 	}
 
 }

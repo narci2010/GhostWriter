@@ -12,6 +12,7 @@ import { StoryComponent } from './story/story.component';
 
 import { AuthService } from './providers/auth.service';
 import { UserService } from './providers/user.service';
+import { StoriesService } from './providers/stories.service';
 
 import { routes } from './app.routes';
 
@@ -50,7 +51,8 @@ import { InputTextModule, ButtonModule, PasswordModule } from 'primeng/primeng';
     AuthGuard, 
 
     AuthService, 
-    UserService
+    UserService,
+    StoriesService
   ],
   bootstrap: [AppComponent]
 })
