@@ -22,7 +22,7 @@ import { AngularFireModule } from 'angularfire2';
 
 import { firebaseConfig } from './common/firebase.config';
 
-import { InputTextModule, ButtonModule, PasswordModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule, PasswordModule, DataListModule, DialogModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,9 @@ import { InputTextModule, ButtonModule, PasswordModule } from 'primeng/primeng';
 
     InputTextModule,
     ButtonModule,
-    PasswordModule
+    PasswordModule,
+    DataListModule,
+    DialogModule
   ],
   providers: [
     AuthGuard, 

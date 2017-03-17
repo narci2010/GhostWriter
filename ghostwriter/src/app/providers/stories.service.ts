@@ -4,7 +4,8 @@ import { AngularFire} from 'angularfire2';
 
 @Injectable()
 export class StoriesService {
-  stories = []
+  private stories = []
+  storiesRef = {}
 
   constructor(
     public af: AngularFire,
@@ -12,17 +13,21 @@ export class StoriesService {
   }
 
   load(){
-    return new Promise((resolve, reject) => {
-      var i = 0, storyCount = Object.keys(this.user.user.stories).length
-      for(var sid in this.user.user.stories){
-        this.af.database.object('/stories/' + sid).subscribe(snapshot => {
-          this.stories.push({
-            id: snapshot.$key,
-            messages: snapshot.messages
-          })
-          if (++i == storyCount) resolve()
-        })
+    for(var sid in this.user.get().stories) 
+    { 
+      this.subscribe(sid) 
+    }
+  }
+
+  subscribe(sid){
+    this.storiesRef[sid] = this.af.database.object('/stories/' + sid).subscribe(snapshot => {
+      var index = this.stories.findIndex(s => s.id == snapshot.$key)
+      var data = {
+        id: snapshot.$key,
+        messages: snapshot.messages
       }
+      if(index == -1) this.stories.push(data)
+        else this.stories[index] = data;
     })
   }
 
@@ -41,11 +46,17 @@ export class StoriesService {
     if(id) sRef.update(id, data);
     else {
       var sid = sRef.push(data).key;
-      this.af.database.list('/user/' + this.user.getID() + "/stories").update(sid, "writer")
+      this.af.database.object('/users/' + this.user.getID() + "/stories/" + sid).set("writer")
+      this.subscribe(sid)
     }
   }
 
   delete(id){
+    this.stories = this.stories.filter(s => s.id != id)
+
+    this.storiesRef[id].unsubscribe()
+    delete this.storiesRef[id]
+
     this.af.database.list('/stories').remove(id);
     this.af.database.list('/users/' + this.user.getID() + '/stories').remove(id);
   }

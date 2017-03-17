@@ -3,8 +3,9 @@ import {AngularFire} from 'angularfire2';
 
 @Injectable()
 export class UserService {
-  user
-
+  private user
+  userRef
+  
   constructor(public af: AngularFire) {
   }
 
@@ -14,7 +15,7 @@ export class UserService {
 
   load(id) {
     return new Promise((resolve, reject) => {
-      this.af.database.object('/users/' + id).subscribe(snapshot => {
+      this.userRef = this.af.database.object('/users/' + id).subscribe(snapshot => {
         this.user = {
           id: snapshot.$key,
           email: snapshot.email,
@@ -44,7 +45,7 @@ export class UserService {
           console.log('User id is not taken.');
           resolve(false)
         }
-      })
+      }).unsubscribe()  
     });
   }
 
@@ -53,6 +54,7 @@ export class UserService {
   }
 
   delete(){
-    this.af.database.list('/users').remove(this.user.id);
+    
+    this.af.database.list('/users').remove(this.user.id)
   }
 }
