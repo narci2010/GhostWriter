@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 import { StoriesService } from '../providers/stories.service';
 
@@ -7,7 +8,8 @@ import { StoriesService } from '../providers/stories.service';
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.css']
 })
-export class StoriesComponent implements OnInit {
+export class StoriesComponent {
+  displayDialog: boolean
 
   constructor(private router: Router,
   						public stories: StoriesService) { }
@@ -15,8 +17,21 @@ export class StoriesComponent implements OnInit {
   ngOnInit() {
   }
 
-  goTo(story){
-  	this.router.navigate(['/stories', story.name]);
+  goTo(storyId){
+  	this.router.navigate(['/stories', storyId]);
+  }
+
+  delete(id){
+    this.stories.delete(id)
+  }
+
+  showDialog(){
+    this.displayDialog = true
+  }
+
+  saveStory(f: NgForm){
+    this.stories.save(f.value)
+    this.displayDialog = false
   }
 
 }

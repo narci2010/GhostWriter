@@ -14,20 +14,17 @@ export class StoriesService {
 
   load(){
     for(var sid in this.user.get().stories) 
-    { 
-      this.subscribe(sid) 
-    }
+      this.subscribe(sid)
   }
 
   subscribe(sid){
     this.storiesRef[sid] = this.af.database.object('/stories/' + sid).subscribe(snapshot => {
       var index = this.stories.findIndex(s => s.id == snapshot.$key)
-      console.log(snapshot)
       var data = {
         id: snapshot.$key,
         name: snapshot.name,
         desc: snapshot.desc,
-        messages: snapshot.messages
+        messageCount: snapshot.messages != null ? Object.keys(snapshot.messages).length : 0
       }
       if(index == -1) this.stories.push(data)
         else this.stories[index] = data;
@@ -62,9 +59,5 @@ export class StoriesService {
 
     this.af.database.list('/stories').remove(id);
     this.af.database.list('/users/' + this.user.getID() + '/stories').remove(id);
-  }
-
-  messageCount(story){
-    return story.messages != null ? Object.keys(story.messages).length : 0
   }
 }

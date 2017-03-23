@@ -13,6 +13,7 @@ import { StoryComponent } from './story/story.component';
 import { AuthService } from './providers/auth.service';
 import { UserService } from './providers/user.service';
 import { StoriesService } from './providers/stories.service';
+import { MessagesService } from './providers/messages.service';
 
 import { routes } from './app.routes';
 
@@ -54,7 +55,8 @@ import { InputTextModule, ButtonModule, PasswordModule, DataListModule, DialogMo
 
     AuthService, 
     UserService,
-    StoriesService
+    StoriesService,
+    MessagesService
   ],
   bootstrap: [AppComponent]
 })

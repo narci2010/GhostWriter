@@ -1,3 +1,14 @@
-<p>
-  story name is {{storyName}}!
-</p>
+<p-dataList [value]="messages.get()">
+	<template let-message pTemplate="item">
+		<div class="ui-grid ui-grid-responsive ui-fluid">
+			<div class="ui-grid-row">
+				{{message.text}}
+			</div>
+		</div>
+	</template>
+</p-dataList>
+
+<form #sendMessageForm="ngForm" (ngSubmit)="send(sendMessageForm)" novalidate>
+	<input type="text" name="text" ngModel reqired pInputText/>
+	<button pButton label="Send"></button>
+</form>
