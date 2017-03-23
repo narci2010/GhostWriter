@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-story',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./story.component.css']
 })
 export class StoryComponent implements OnInit {
+	storyName
 
-  constructor() { }
+  constructor(private router: Router,
+  						private route: ActivatedRoute) { }
 
   ngOnInit() {
+  	this.storyName = this.route.snapshot.params['id']
   }
 
 }

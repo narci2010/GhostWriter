@@ -16,10 +16,6 @@ export class HomeComponent {
   	this.stories.load()
   }
 
-  messageCount(story){
-  	return story.messages != null ? Object.keys(story.messages).length : 0
-  }
-
   delete(id){
   	this.stories.delete(id)
   }
@@ -30,7 +26,7 @@ export class HomeComponent {
 
   saveStory(f: NgForm){
 		this.stories.save(f.value)
-		//this.displayDialog = false
+		this.displayDialog = false
 	}
 
 }

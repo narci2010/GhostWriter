@@ -1,3 +1,24 @@
-<p>
-  stories works!
-</p>
+<p-dataList [value]="stories.get()">
+	<template let-story pTemplate="item">
+		<div class="ui-grid ui-grid-responsive ui-fluid">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-3"></div>
+				<div class="ui-grid-col-6" (click)="goTo(story)">
+					<div class="ui-grid ui-grid-responsive ui-fluid">
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-2">Name: </div>
+							<div class="ui-grid-col-10">{{story.name}}</div>
+						</div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-2">Messages: </div>
+							<div class="ui-grid-col-10">{{stories.messageCount(story)}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui-grid-col-3">
+					<button pButton type="button" (click)="delete(story.id)" label="Delete"></button>
+				</div>
+			</div>
+		</div>
+	</template>
+</p-dataList>
