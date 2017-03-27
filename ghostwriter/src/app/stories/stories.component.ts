@@ -11,6 +11,16 @@ import { StoriesService } from '../providers/stories.service';
 export class StoriesComponent {
   displayDialog: boolean
 
+  visibilityOptions = [
+    {label: "All", value: "all"},
+    {label: "letters", value: "letter"},
+    {label: "words", value: "word"},
+    {label: "sentences", value: "sentence"},
+    {label: "messages", value: "message"}
+  ]
+
+  rules = {}
+
   constructor(private router: Router,
   						public stories: StoriesService) { }
 

@@ -25,4 +25,22 @@ export class StoryComponent {
 		this.messages.save(f.value)
 	}
 
+	getMessages(){
+		switch (this.messages.story.rules.visibility) {
+			case "letter":
+				return this.messages.get(1, "\w", this.messages.story.rules.visibleNumber)
+
+			case "word":
+				return this.messages.get(1, " ", this.messages.story.rules.visibleNumber)
+
+			case "sentence":
+				return this.messages.get(1, ".", this.messages.story.rules.visibleNumber)
+
+			case "message":
+				return this.messages.get(this.messages.story.rules.visibleNumber)
+			
+			default:
+				return this.messages.get()
+		}
+	}
 }

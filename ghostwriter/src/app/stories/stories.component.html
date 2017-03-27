@@ -24,10 +24,14 @@
 </p-dataList>
 <button pButton type="button" (click)="showDialog()" label="Create New Story"></button>
 
-<p-dialog header="Story Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="225" (onAfterHide)="onDialogHide()">
+<p-dialog header="Story Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="225">
 	<form #createStoryForm="ngForm" (ngSubmit)="saveStory(createStoryForm)" novalidate>
 		<input type="text" name="name" ngModel reqired pInputText/>
 		<input type="text" name="desc" ngModel required pPassword/>
+		<fieldset ngModelGroup="rules" #visibilityRules="ngModelGroup">
+			<p-spinner name="visibleNumber" [min]="0" [max]="100" [disabled]="visibility == 'all'" size="10" [(ngModel)]="rules.visibleNumber"></p-spinner>
+			<p-dropdown name="visibility" [options]="visibilityOptions" [(ngModel)]="rules.visibility"></p-dropdown>
+		</fieldset>
 		<button pButton label="Save"></button>
 	</form>
 </p-dialog>
