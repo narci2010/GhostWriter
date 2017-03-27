@@ -5,7 +5,6 @@ import {AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
 export class AuthService {
   constructor(public af: AngularFire) {}
 
-
   signup(_credentials){
     return this.af.auth.createUser(_credentials);
   }

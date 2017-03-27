@@ -2,25 +2,30 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
 import { AuthService } from '../providers/auth.service';
+import { UserService } from '../providers/user.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-	
 	public isLoggedIn: boolean;
 
 	constructor(
 		private router: Router,
-		public afService: AuthService) 
+		public afService: AuthService,
+		public user: UserService,) 
 	{
 		this.afService.af.auth.subscribe(
 			(auth) => {
 				if(auth == null) {
 					console.log("Not Logged in.");
 					this.isLoggedIn = false;
+					this.router.navigate(['/login'])
 				}
 				else {
-					console.log("Successfully Logged in.");
 					this.isLoggedIn = true;
+					console.log("Successfully logged in.");
+					this.user.load(auth.uid).then(() => {
+						this.router.navigate(['/home'])
+					})
 				}
 			})
 	}

@@ -25,7 +25,6 @@ export class AuthComponent {
 			this.user.create(authData.uid, {
 				email: authData.auth.email
 			});
-			this.gohome(authData.uid)
 		}).catch((error) => {
 			this.error = error
 			console.log(error)
@@ -37,9 +36,7 @@ export class AuthComponent {
 		this.error = null
 
 		if (f.valid) {
-			this.af.login(f.value).then((authData) => {
-				this.gohome(authData.uid)
-			}).catch((error:any) => {
+			this.af.login(f.value).catch((error:any) => {
 				this.error = error
 				console.log(error)
 			});
@@ -54,15 +51,8 @@ export class AuthComponent {
 						email: authData.auth.email
 					})
 				}
-				this.gohome(authData.uid)
 			})
 		});
-	}
-
-	gohome(uid){
-		this.user.load(uid).then(() => {
-			this.router.navigate(['home'])
-		})
 	}
 
 	toggleForm(){
