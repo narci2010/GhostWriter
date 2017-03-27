@@ -1,7 +1,21 @@
-<form #loginForm="ngForm" (ngSubmit)="signup(loginForm)" novalidate>
-	<input type="text" name="email" ngModel reqired pInputText/>
-	<input type="password" name="password" ngModel required pPassword/>
-	<button pButton label="Sign Up"></button>
-</form>
-<button pButton type="button" (click)="login(loginForm)" label="Sign In"></button>
-<button pButton type="button" (click)="loginGoogle()" label="Sign with Google"></button>
+<div class="authDiv">
+	<div class="container">
+		<img src="../../assets/icon.png">
+		<form #loginForm="ngForm" novalidate>
+			<div class="form-input">
+				<input type="text" name="email" ngModel reqired pInputText/>
+			</div>
+			<div class="form-input">
+				<input type="password" name="password" ngModel required pPassword/>
+			</div>
+			<button *ngIf="!registered" pButton class="btn-login" type="button" (click)="signup(loginForm)" label="Sign Up"></button>
+			<button *ngIf="registered" pButton class="btn-login" type="button" (click)="login(loginForm)" label="Sign In"></button>
+			<br>	
+			<button class="btn-google" pButton type="button" (click)="loginGoogle()" label="Sign with Google"></button>
+			<p *ngIf="!registered" (click)="toggleForm()">Already have an account?</p>
+			<p *ngIf="registered" (click)="toggleForm()">Don't have an account?</p>
+			<a *ngIf="registered" href="#">Forget password?</a>
+		</form>	
+	</div>
+</div>
+

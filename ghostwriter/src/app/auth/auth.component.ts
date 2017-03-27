@@ -11,7 +11,7 @@ import { UserService } from '../providers/user.service';
 	styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
-
+	registered = false;
 	error;
 	submitted = false;
 
@@ -63,6 +63,10 @@ export class AuthComponent {
 		this.user.load(uid).then(() => {
 			this.router.navigate(['home'])
 		})
+	}
+
+	toggleForm(){
+		this.registered = !this.registered
 	}
 
 }
