@@ -8,10 +8,9 @@ export class MessagesService {
   private messages = []
   public story = {
     id: "",
-    rules: {
-      visibility: "",
-      visibleNumber: 0
-    }
+    maskType: "",
+    maskLength: 0,
+    messagesDisplayed: 0
   }
 
   constructor(
@@ -33,37 +32,46 @@ export class MessagesService {
     })
   }
 
-  get(count?: number, reg?: string, num?: number){
+  getMasked(){
+    var count = this.story.messagesDisplayed
     var m = this.messages.slice()
-
-    if(count && count < m.length) m = m.splice(m.length - count, count);
-
-    if(reg) m = m.map(x => ({
+    if(count != 0 && count < m.length) m = m.splice(m.length - count);
+    if(this.story.maskType != "none") m = m.map(x => ({
       uid: x.uid,
-      text: this.format(x.text, reg, num)
+      text: this.format(x.text, this.story.maskType, this.story.maskLength)
     }));
-
-      return m;
-    }
-
-    save(data){
-      var message = data
-      message.uid = this.user.getID()
-      this.af.database.object('/stories/' + this.story.id + "/messages/" + String(this.messages.length)).set(message)
-    }
-
-    format(message, reg, num){
-      var index = 0, temp
-      var tempMessage = message
-      for (var i = num; i > 0; i--) {
-        temp = tempMessage.lastIndexOf(reg)
-        if (temp != -1) {
-          index = temp
-          tempMessage = tempMessage.substring(0, temp)
-        }
-        else { index = 0; break; }
-      }
-      return index != 0 ?  " . . . " + message.substring(index) : message.substring(index)
-    }
-
+    if (m.length < this.messages.length) m.unshift({text: " . . . "});
+    return m
   }
+
+  get(count?: number){
+    var m = this.messages.slice()
+    if(count && count < m.length) m = m.splice(m.length - count, count);
+    return m;
+  }
+
+  save(data){
+    var message = data
+    message.uid = this.user.getID()
+    this.af.database.object('/stories/' + this.story.id + "/messages/" + String(this.messages.length)).set(message)
+  }
+
+  format(message, maskType, maskLength){
+    var index = message.search(this.formReg(maskType, maskLength))
+    if (index == -1) return message;
+    else return " . . . " + message.substring(index);
+  }
+
+  formReg(maskType, maskLength){
+    switch (maskType) {
+      case "letter":
+      return new RegExp('(.){' + maskLength + '}[.?! ]*$')
+      case "word":
+      return new RegExp("(\\w+[ ,&\:\;\'\"]*){"+ maskLength + "}[.?! ]*$")
+      case "sentence":
+      return new RegExp("([\\w ,&\:\;\'\"]+[.?! ]*){" + maskLength + "}$")
+      default:
+      return new RegExp(".*")
+    }
+  }
+}

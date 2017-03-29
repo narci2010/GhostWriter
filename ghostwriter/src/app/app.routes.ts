@@ -3,6 +3,8 @@ import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { StoriesComponent } from './stories/stories.component';
 import { StoryComponent } from './story/story.component';
+import { SettingsComponent } from './settings/settings.component';
+
 
 import { AuthGuard } from './common/auth.guard';
 
@@ -16,6 +18,8 @@ export const routes: Routes = [
 
   { path: 'stories',   component: StoriesComponent, canActivate: [AuthGuard] },
   { path: 'stories/:id', component: StoryComponent, canActivate: [AuthGuard] },
+	
+	{ path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
 
   { path: '*', component: AuthComponent }
 ];

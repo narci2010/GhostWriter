@@ -17,19 +17,7 @@
 			<div class="ui-grid-col-10 container" >
 				<div class="container-background"></div>
 				<div class="container-content">
-					<p-dataList [value]="messages.getMasked()">
-						<template let-message pTemplate="item">
-							<div class="ui-grid ui-grid-responsive ui-fluid">
-								<div class="ui-grid-row">
-									{{message.text}}
-								</div>
-							</div>
-						</template>
-					</p-dataList>
-					<form #sendMessageForm="ngForm" (ngSubmit)="send(sendMessageForm)" novalidate>
-						<textarea name="text" required pInputTextarea [(ngModel)]="text"></textarea>
-						<button pButton label="Send"></button>
-					</form>
+					To be done
 				</div>
 			</div>
 		</div>

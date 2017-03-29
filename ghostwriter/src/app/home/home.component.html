@@ -38,13 +38,13 @@
 									<div class="ui-grid-row profile-item">
 										<div>
 											<p class="label">Messages Sent:</p>
-											<p class="info">{{u.stats.messagesSent}} messages</p>
+											<p class="info">{{u.stats.messages}} messages</p>
 										</div>								
 									</div>
 									<div class="ui-grid-row profile-item">
 										<div>
 											<p class="label">Stories Written:</p>
-											<p class="info">{{u.stats.storiesCount}} stories</p>
+											<p class="info">{{u.stats.stories}} stories</p>
 										</div>
 									</div>
 								</div>
@@ -74,7 +74,7 @@
 													<div class="ui-grid-col-2">
 														<div class="ui-grid ui-grid-responsive ui-fluid">
 															<div class="ui-grid-row story-info-other">
-																No Type
+																{{story.type}}
 															</div>
 															<div class="ui-grid-row story-info-other">
 																{{story.messageCount}} messages

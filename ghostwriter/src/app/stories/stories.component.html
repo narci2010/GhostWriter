@@ -1,37 +1,75 @@
-<p-dataList [value]="stories.get()">
-	<template let-story pTemplate="item">
-		<div class="ui-grid ui-grid-responsive ui-fluid">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-3"></div>
-				<div class="ui-grid-col-6" (click)="goTo(story.id)">
-					<div class="ui-grid ui-grid-responsive ui-fluid">
-						<div class="ui-grid-row">
-							<div class="ui-grid-col-2">Name: </div>
-							<div class="ui-grid-col-10">{{story.name}}</div>
+<div class="background">
+	<div class="banner"></div>
+	<div class="ui-grid ui-grid-responsive ui-fluid ">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2 container">
+				<p-dataList [value]="options" class="container-content">
+					<template let-option pTemplate="item">
+						<div class="ui-grid-row option-item" (click)="goTo(option.state)">
+							<div class="ui-grid-col-2">
+								<i [className]="option.class"></i>
+							</div>
+							<div class="ui-grid-col-10">{{option.name}}</div>
 						</div>
-						<div class="ui-grid-row">
-							<div class="ui-grid-col-2">Messages: </div>
-							<div class="ui-grid-col-10">{{story.messageCount}}</div>
-						</div>
-					</div>
-				</div>
-				<div class="ui-grid-col-3">
-					<button pButton type="button" (click)="delete(story.id)" label="Delete"></button>
+					</template>
+				</p-dataList>
+			</div>
+			<div class="ui-grid-col-10 container" >
+				<div class="container-background"></div>
+				<div class="container-content">
+					<p-dataList [value]="stories.get()">
+						<template let-story pTemplate="item">
+							<div class="ui-grid ui-grid-responsive ui-fluid option-item" (click)=goToStory(story.id)>
+								<div class="ui-grid-row">				
+									<div class="ui-grid-col-8">
+										<div class="ui-grid ui-grid-responsive ui-fluid">
+											<div class="ui-grid-row story-info-name">
+												{{story.name}}
+											</div>
+											<div class="ui-grid-row story-info-desc">
+												{{story.desc}}
+											</div>
+										</div>
+									</div>
+									<div class="ui-grid-col-2">
+										<div class="ui-grid ui-grid-responsive ui-fluid">
+											<div class="ui-grid-row story-info-other">
+												{{story.type}}
+											</div>
+											<div class="ui-grid-row story-info-other">
+												{{story.messageCount}} messages
+											</div>
+										</div>
+									</div>
+									<div class="ui-grid-col-2">
+										<button pButton type="button" (click)="delete(story.id)" label="Delete"></button>
+									</div>
+								</div>
+							</div>
+						</template>
+					</p-dataList>
+					<button pButton type="button" (click)="showDialog()" label="Create New Story"></button>
 				</div>
 			</div>
 		</div>
-	</template>
-</p-dataList>
-<button pButton type="button" (click)="showDialog()" label="Create New Story"></button>
+	</div>
+</div>
 
-<p-dialog header="Story Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="225">
+<p-dialog header="New Story" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="300" height="500">
 	<form #createStoryForm="ngForm" (ngSubmit)="saveStory(createStoryForm)" novalidate>
 		<input type="text" name="name" ngModel reqired pInputText/>
 		<input type="text" name="desc" ngModel required pPassword/>
-		<fieldset ngModelGroup="rules" #visibilityRules="ngModelGroup">
-			<p-spinner name="visibleNumber" [min]="0" [max]="100" [disabled]="visibility == 'all'" size="10" [(ngModel)]="rules.visibleNumber"></p-spinner>
-			<p-dropdown name="visibility" [options]="visibilityOptions" [(ngModel)]="rules.visibility"></p-dropdown>
-		</fieldset>
+		<p-dropdown name="type" ngModel [options]="storyTypes"></p-dropdown>
+
+		<p-spinner name="messageDisplayed" ngModel [min]="0" [max]="100" size="10"></p-spinner>
+		<div>
+			<div class="ui-grid-col-6">
+			<p-spinner name="maskLength" ngModel [min]="0" [max]="100" [disabled]="maskType == 'none'" size="10"></p-spinner>
+			</div>
+			<div class="ui-grid-col-6">
+				<p-dropdown name="maskType" ngModel [options]="maskTypes"></p-dropdown>
+			</div>
+		</div>
 		<button pButton label="Save"></button>
 	</form>
 </p-dialog>

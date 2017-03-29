@@ -24,8 +24,12 @@ export class StoriesService {
         id: snapshot.$key,
         name: snapshot.name,
         desc: snapshot.desc,
-        messageCount: snapshot.messages != null ? Object.keys(snapshot.messages).length : 0,
-        rules: snapshot.rules
+        type: snapshot.type,
+        maskType: snapshot.maskType,
+        maskLength: snapshot.maskLength,
+        messagesDisplayed: snapshot.messagesDisplayed,
+
+        messageCount: snapshot.messages != null ? Object.keys(snapshot.messages).length : 0
       }
       if(index == -1) this.stories.push(data)
         else this.stories[index] = data;

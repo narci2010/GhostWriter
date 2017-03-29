@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params} from "@angular/router";
 import { StoriesService } from '../providers/stories.service';
 import { MessagesService } from '../providers/messages.service';
+import { AuthService } from '../providers/auth.service';
 
 @Component({
   selector: 'app-story',
@@ -10,9 +11,33 @@ import { MessagesService } from '../providers/messages.service';
   styleUrls: ['./story.component.css']
 })
 export class StoryComponent {
+	options = [
+		{
+			class: "fa fa-user-circle",
+			name: "Profile",
+			state: "home"
+		},
+		{
+			class: "fa fa-book",
+			name: "Stories",
+			state: "stories"
+		},
+		{
+			class: "fa fa-wrench",
+			name: "Settings",
+			state: "settings"
+		},
+		{
+			class: "fa fa-sign-out",
+			name: "Log Out",
+			state: "logout"
+		}
+	]
+	
 	storyName
 
-  constructor(private router: Router,
+  constructor(public af: AuthService,
+  						private router: Router,
   						private route: ActivatedRoute,
   						private stories: StoriesService,
   						public messages: MessagesService) { }
@@ -25,22 +50,8 @@ export class StoryComponent {
 		this.messages.save(f.value)
 	}
 
-	getMessages(){
-		switch (this.messages.story.rules.visibility) {
-			case "letter":
-				return this.messages.get(1, "\w", this.messages.story.rules.visibleNumber)
-
-			case "word":
-				return this.messages.get(1, " ", this.messages.story.rules.visibleNumber)
-
-			case "sentence":
-				return this.messages.get(1, ".", this.messages.story.rules.visibleNumber)
-
-			case "message":
-				return this.messages.get(this.messages.story.rules.visibleNumber)
-			
-			default:
-				return this.messages.get()
-		}
-	}
+	goTo(state){
+    if(state == "logout")  this.af.logout()
+    else this.router.navigate(['/'+ state])
+  }
 }

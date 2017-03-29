@@ -23,13 +23,15 @@ import { AngularFireModule } from 'angularfire2';
 
 import { firebaseConfig } from './common/firebase.config';
 
-import { InputTextModule, 
+import { InputTextModule,
+        InputTextareaModule, 
         ButtonModule, 
         PasswordModule, 
         DataListModule, 
         DialogModule, 
         SpinnerModule,
         DropdownModule } from 'primeng/primeng';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { InputTextModule,
     AuthComponent,
     HomeComponent,
     StoriesComponent,
-    StoryComponent
+    StoryComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { InputTextModule,
     }),
 
     InputTextModule,
+    InputTextareaModule,
     ButtonModule,
     PasswordModule,
     DataListModule,

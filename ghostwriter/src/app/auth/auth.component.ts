@@ -26,7 +26,12 @@ export class AuthComponent {
 	signup(f: NgForm){
 		this.af.signup(f.value).then((authData) => {
 			this.user.create(authData.uid, {
-				email: authData.auth.email
+				name: authData.auth.email.split('@')[0],
+				email: authData.auth.email,
+				stats: {
+					messages: 0,
+					stories: 0
+				}
 			});
 		}).catch((error) => {
 			this.error = error
@@ -51,7 +56,13 @@ export class AuthComponent {
 			this.user.exists(authData.uid).then(exist => {
 				if(!exist){
 					this.user.create(authData.uid, {
-						email: authData.auth.email
+						name: authData.auth.email.split('@')[0],
+						email: authData.auth.email,
+						stats: {
+							messages: 0,
+							stories: 0
+						},
+						avatar: authData.google.photoURL
 					})
 				}
 			})

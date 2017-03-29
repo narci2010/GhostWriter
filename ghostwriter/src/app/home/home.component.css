@@ -166,7 +166,3 @@ p.info
 	font-style: italic;
 	margin-bottom: 5px;
 }
-
-.ui-widget-content{
-	background-color: transparent !important;
-}
