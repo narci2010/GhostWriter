@@ -19,6 +19,10 @@ export class UserService {
         this.user = {
           id: snapshot.$key,
           email: snapshot.email,
+          name: snapshot.name,
+          desc: snapshot.desc,
+          stats: snapshot.stats,
+          avatar: snapshot.avatar,
           stories: snapshot.stories
         }
         resolve()
