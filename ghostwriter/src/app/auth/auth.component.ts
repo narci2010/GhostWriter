@@ -5,6 +5,8 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../providers/auth.service';
 import { UserService } from '../providers/user.service';
 
+import { AuthGuard } from '../common/auth.guard';
+
 @Component({
 	selector: 'app-auth',
 	templateUrl: './auth.component.html',
@@ -16,6 +18,7 @@ export class AuthComponent {
 	submitted = false;
 
 	constructor(public af: AuthService,
+		private aguard: AuthGuard,
 		public user: UserService,
 		private router: Router) { }
 
