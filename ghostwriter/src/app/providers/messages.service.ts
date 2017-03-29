@@ -24,10 +24,12 @@ export class MessagesService {
     this.story = this.stories.getbyId(sid)
     this.af.database.list('/stories/' + sid + '/messages').subscribe(snapshots => {
       this.messages = []
-      snapshots.forEach(snapshot => {     
+      snapshots.forEach(snapshot => {    
         this.messages.push({
           text: snapshot.text,
-          uid: snapshot.uid
+          uid: snapshot.uid,
+          avatar: this.user.getAvatar(snapshot.uid),
+          author: this.user.getName(snapshot.uid)
         });
       });
       this.masked = this.mask(this.messages.slice())
@@ -35,12 +37,12 @@ export class MessagesService {
   }
 
   mask(m){
-    console.log("Help!")
     var count = this.story.messagesDisplayed
-    //var m = this.messages.slice()
     if(count != 0 && count < m.length) m = m.splice(m.length - count);
     if(this.story.maskType != "none") m = m.map(x => ({
       uid: x.uid,
+      avatar: x.avatar,
+      author: x.author,
       text: this.format(x.text, this.story.maskType, this.story.maskLength)
     }));
     if (m.length < this.messages.length) m.unshift({text: " . . . "});

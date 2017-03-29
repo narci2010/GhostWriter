@@ -3,7 +3,15 @@ import {AngularFire} from 'angularfire2';
 
 @Injectable()
 export class UserService {
-  private user
+  private user = {
+    id: "",
+    avatar: "",
+    email: "",
+    name: "",
+    desc: "",
+    stats: {},
+    stories: {}
+  }
   userRef
   
   constructor(public af: AngularFire) {
@@ -38,6 +46,24 @@ export class UserService {
     return this.user.id;
   }
 
+  getAvatar(uid?){
+    return new Promise((resolve, reject) => {
+      if(uid) this.af.database.object('users/' + uid + '/avatar').subscribe(snapshot => {
+        resolve(snapshot.$value)
+      });
+        else resolve(this.user.avatar)
+      });
+  }
+
+  getName(uid?){
+    return new Promise((resolve, reject) => {
+      if(uid) this.af.database.object('users/' + uid + '/name').subscribe(snapshot => {
+        resolve(snapshot.$value)
+      });
+        else resolve(this.user.name)
+      });
+  }
+
   exists(id){
     return new Promise((resolve, reject) => {
       this.af.database.object('/users/' + id).subscribe( user => {
@@ -58,7 +84,7 @@ export class UserService {
   }
 
   delete(){
-    
+
     this.af.database.list('/users').remove(this.user.id)
   }
 }

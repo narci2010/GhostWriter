@@ -59,3 +59,52 @@
 {
 	margin-right: 5px;
 }
+
+.message
+{
+	position: relative;
+	height: 50px;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+
+.message-background
+{
+	background-color: #fae5d3;
+	opacity: 0.3;
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	height: 50px;
+	width:100%;
+}
+
+.message-content
+{
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	height: 100%;
+	width:100%;
+}
+
+.message-text
+{
+	display: flex;
+	align-items: center;
+	white-space: pre;
+}
+
+.message-author
+{
+	display: flex;
+	align-items: center;
+	font-style: italic;
+	font-size: 10px;
+}
+
+.avatar{
+	height: 50px
+}

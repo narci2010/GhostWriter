@@ -19,9 +19,14 @@
 				<div class="container-content">
 					<p-dataList [value]="messages.getMasked()">
 						<template let-message pTemplate="item">
-							<div class="ui-grid ui-grid-responsive ui-fluid">
-								<div class="ui-grid-row">
-									{{message.text}}
+							<div class="ui-grid ui-grid-responsive ui-fluid message">
+								<div class="message-background"></div>
+								<div class="ui-grid-row message-content">
+									<div class="ui-grid-col-2">
+										<img class="avatar" src="{{message.avatar | async}}">
+									</div>
+									<div class="ui-grid-col-8 message-text">{{message.text}}</div>
+									<div class="ui-grid-col-2 message-author"> by {{message.author | async}}</div>
 								</div>
 							</div>
 						</template>
