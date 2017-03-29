@@ -6,6 +6,7 @@ import { AngularFire } from 'angularfire2';
 @Injectable()
 export class MessagesService {
   private messages = []
+  private masked = []
   public story = {
     id: "",
     maskType: "",
@@ -29,12 +30,14 @@ export class MessagesService {
           uid: snapshot.uid
         });
       });
+      this.masked = this.mask(this.messages.slice())
     })
   }
 
-  getMasked(){
+  mask(m){
+    console.log("Help!")
     var count = this.story.messagesDisplayed
-    var m = this.messages.slice()
+    //var m = this.messages.slice()
     if(count != 0 && count < m.length) m = m.splice(m.length - count);
     if(this.story.maskType != "none") m = m.map(x => ({
       uid: x.uid,
@@ -42,6 +45,10 @@ export class MessagesService {
     }));
     if (m.length < this.messages.length) m.unshift({text: " . . . "});
     return m
+  }
+
+  getMasked(){
+    return this.masked;
   }
 
   get(count?: number){
