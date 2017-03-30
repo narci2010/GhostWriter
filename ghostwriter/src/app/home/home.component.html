@@ -60,10 +60,7 @@
 								<div class="content datalist-noborder">
 									<p-dataList [value]="stories.get()" [paginator]="true" [rows]="5">
 										<p-header>
-											<div class="container header">
-												<div class="background header-background"></div>
-												<div class="content">Stories</div>
-											</div>
+											<div class="header">Stories</div>
 										</p-header>
 										<template let-story pTemplate="item">
 											<div class="ui-grid ui-grid-responsive ui-fluid container story-item" (click)=goToStory(story.id)>

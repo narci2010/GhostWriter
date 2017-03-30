@@ -18,23 +18,12 @@
 .header
 {
 	height: 30px;
-	margin: -20px;
-	margin-top: -13px;
-	color: maroon;
-	font-size: 20px;
+	margin-top: 5px;
+	margin-bottom: -10px;
+	font-size: 24px;
 	font-weight: bold;
-}
+	text-align: left;
 
-.header .header-background
-{
-	background-color: #fae5d3;
-	opacity: 0.8;
-}
-
-.header .content
-{
-	display: grid;
-	align-items: center;
 }
 
 .main
@@ -136,7 +125,7 @@ p.label
 {
 	font-size: 14px;
 	margin-left: 10px;
-	color: firebrick;
+	color: indianred;
 }
 
 .story-info-name
@@ -145,7 +134,7 @@ p.label
 	font-weight: bold;
 	margin: 5px;
 	margin-left: 10px;
-	color: maroon;
+	color: grey;
 }
 
 .story-info-other
@@ -153,7 +142,7 @@ p.label
 	font-size: 10px;
 	font-style: italic;
 	margin: 5px;
-	color: chocolate;
+	color: sienna;
 }
 
 .story-item
@@ -163,9 +152,10 @@ p.label
 	border-bottom: 1px solid #D5D5D5;
 	cursor: pointer;
 	height: 55px;
-	margin: 20px;
+	margin-left: 40px;
 	margin-top: 15px;
 	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
 .story-item .content
