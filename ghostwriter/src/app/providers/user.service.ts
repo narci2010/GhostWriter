@@ -9,7 +9,10 @@ export class UserService {
     email: "",
     name: "",
     desc: "",
-    stats: {},
+    stats: {
+      messages: 0,
+      stories: 0
+    },
     stories: {}
   }
   userRef

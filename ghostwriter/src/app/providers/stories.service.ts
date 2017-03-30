@@ -13,6 +13,7 @@ export class StoriesService {
   }
 
   load(){
+    this.stories = []
     for(var sid in this.user.get().stories) 
       this.subscribe(sid)
   }

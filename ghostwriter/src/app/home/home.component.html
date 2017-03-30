@@ -1,69 +1,77 @@
-<div class="background">
+<div class="wallpaper">
 	<div class="banner"></div>
 	<div class="ui-grid ui-grid-responsive ui-fluid ">
 		<div class="ui-grid-row">
-			<div class="ui-grid-col-2 container">
-				<p-dataList [value]="options" class="container-content">
+			<div class="ui-grid-col-2 menu">
+				<p-dataList [value]="options">
 					<template let-option pTemplate="item">
-						<div class="ui-grid-row option-item" (click)="goTo(option.state)">
-							<div class="ui-grid-col-2">
-								<i [className]="option.class"></i>
+						<div class="container menu-item">
+							<div class="background menu-item-background"></div>
+							<div class="ui-grid-row content" (click)="goTo(option.state)">
+								<div class="ui-grid-col-2 icon">
+									<i [className]="option.class"></i>
+								</div>
+								<div class="ui-grid-col-10 text">{{option.name}}</div>
 							</div>
-							<div class="ui-grid-col-10">{{option.name}}</div>
 						</div>
 					</template>
 				</p-dataList>
 			</div>
-			<div class="ui-grid-col-10 container" >
-				<div class="container-background"></div>
-				<div class="container-content" *ngFor="let u of getUser()">
+			<div class="ui-grid-col-10 container main" >
+				<div class="background main-background"></div>
+				<div class="content">
 					<div class="ui-grid-row">
 						<div class="ui-grid-col-2">
-							<img class="avatar" src="{{u.avatar}}">
+							<img class="avatar" src="{{user.get().avatar}}">
 							<div class="user-info">
-								<div class="user-info-background"></div>
-								<div class="user-info-content">
-									<div class="ui-grid-row profile-item">
-										<div>
-											<p class="label">Username</p>
-											<p class="info">{{u.name}}</p>
-										</div>
+								<div class="ui-grid-row container profile-item">
+									<div class="background profile-item-background"></div>
+									<div class="content">
+										<p class="label">Username</p>
+										<p class="info">{{user.get().name}}</p>
 									</div>
-									<div class="ui-grid-row profile-item">
-										<div>
-											<p class="label">About</p>
-											<p class="info">{{u.desc}}</p>
-										</div>
+								</div>
+								<div class="ui-grid-row container profile-item">
+									<div class="background profile-item-background"></div>
+									<div class="content">
+										<p class="label">About</p>
+										<p class="info">{{user.get().desc}}</p>
 									</div>
-									<div class="ui-grid-row profile-item">
-										<div>
-											<p class="label">Messages Sent:</p>
-											<p class="info">{{u.stats.messages}} messages</p>
-										</div>								
-									</div>
-									<div class="ui-grid-row profile-item">
-										<div>
-											<p class="label">Stories Written:</p>
-											<p class="info">{{u.stats.stories}} stories</p>
-										</div>
+								</div>
+								<div class="ui-grid-row container profile-item">
+									<div class="background profile-item-background"></div>
+									<div class="content">
+										<p class="label">Messages Sent:</p>
+										<p class="info">{{user.get().stats.messages}} messages</p>
+									</div>								
+								</div>
+								<div class="ui-grid-row container profile-item">
+									<div class="background profile-item-background"></div>
+									<div class="content">
+										<p class="label">Stories Written:</p>
+										<p class="info">{{user.get().stats.stories}} stories</p>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="ui-grid-col-10">
-							<div class="stories-info">
-								<div class="stories-info-background"></div>
-								<div class="stories-info-content">
+							<div class="container stories-info">
+								<div class="background stories-info-background"></div>
+								<div class="content datalist-noborder">
 									<p-dataList [value]="stories.get()" [paginator]="true" [rows]="5">
 										<p-header>
-											Stories
+											<div class="container header">
+												<div class="background header-background"></div>
+												<div class="content">Stories</div>
+											</div>
 										</p-header>
 										<template let-story pTemplate="item">
-											<div class="ui-grid ui-grid-responsive ui-fluid option-item" (click)=goToStory(story.id)>
-												<div class="ui-grid-row">				
+											<div class="ui-grid ui-grid-responsive ui-fluid container story-item" (click)=goToStory(story.id)>
+												<div class="background story-item-background"></div>
+												<div class="ui-grid-row content">				
 													<div class="ui-grid-col-10">
 														<div class="ui-grid ui-grid-responsive ui-fluid">
-														<div class="ui-grid-row story-info-name">
+															<div class="ui-grid-row story-info-name">
 																{{story.name}}
 															</div>
 															<div class="ui-grid-row story-info-desc">
@@ -81,7 +89,7 @@
 															</div>
 														</div>
 													</div>
-												</div>
+													</div>
 											</div>
 										</template>
 									</p-dataList>

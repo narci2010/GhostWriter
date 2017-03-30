@@ -49,8 +49,4 @@ export class HomeComponent {
 	goToStory(id){
 		this.router.navigate(['/stories', id]);
 	}
-
-	getUser(){
-		return [this.user.get()]
-	}
 }
