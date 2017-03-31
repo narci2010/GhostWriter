@@ -9,6 +9,7 @@ import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { StoriesComponent } from './stories/stories.component';
 import { StoryComponent } from './story/story.component';
+import { StoryShowComponent } from './story-show/story-show.component';
 
 import { AuthService } from './providers/auth.service';
 import { UserService } from './providers/user.service';
@@ -33,6 +34,7 @@ import { InputTextModule,
         DropdownModule } from 'primeng/primeng';
 import { SettingsComponent } from './settings/settings.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,8 @@ import { SettingsComponent } from './settings/settings.component';
     HomeComponent,
     StoriesComponent,
     StoryComponent,
-    SettingsComponent
+    SettingsComponent,
+    StoryShowComponent
   ],
   imports: [
     BrowserModule,

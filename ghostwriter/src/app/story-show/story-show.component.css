@@ -1,0 +1,69 @@
+.banner
+{
+	width: 100%;
+	height: 15vh;
+	opacity: 0.3;
+	background-color: #fae5d3;
+	background-size: 100% 100%; 
+	overflow: auto; 
+}
+
+.main
+{
+	height: 78vh;
+	border-radius: 4px;
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+
+.main-background
+{
+	background-color: #fae5d3;
+	opacity: 0.3; 
+}
+
+.menu
+{
+	border-radius: 4px;
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+
+.menu .menu-item
+{
+	height: 25px;
+	margin-bottom: 5px;
+	cursor: pointer;
+	color: maroon;
+}
+
+.menu-item .menu-item-background
+{
+	background-color: #fdebd0;
+	opacity: 0.75;
+}
+
+.menu-item .icon
+{
+	padding-top: 3px;
+	padding-left: 10px
+}
+
+.menu-item .text
+{
+	padding-top: 3px;
+	padding-left: 10px
+}
+
+.wallpaper
+{
+	width: 100%;
+	height: 100%;
+	background: url('../../assets/banner.jpg');
+	background-size: 100% 100%; 
+	overflow: auto; 
+}

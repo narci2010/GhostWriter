@@ -1,0 +1,28 @@
+<div class="wallpaper">
+	<div class="banner"></div>
+	<div class="ui-grid ui-grid-responsive ui-fluid ">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2 menu">
+				<p-dataList [value]="options">
+					<template let-option pTemplate="item">
+						<div class="container menu-item">
+							<div class="background menu-item-background"></div>
+							<div class="ui-grid-row content" (click)="goTo(option.state)">
+								<div class="ui-grid-col-2 icon">
+									<i [className]="option.class"></i>
+								</div>
+								<div class="ui-grid-col-10 text">{{option.name}}</div>
+							</div>
+						</div>
+					</template>
+				</p-dataList>
+			</div>
+			<div class="ui-grid-col-10 container main" >
+				<div class="background main-background"></div>
+				<div class="content">
+					To be done
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

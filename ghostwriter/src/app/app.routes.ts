@@ -3,6 +3,7 @@ import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { StoriesComponent } from './stories/stories.component';
 import { StoryComponent } from './story/story.component';
+import { StoryShowComponent } from './story-show/story-show.component';
 import { SettingsComponent } from './settings/settings.component';
 
 
@@ -18,6 +19,7 @@ export const routes: Routes = [
 
   { path: 'stories',   component: StoriesComponent, canActivate: [AuthGuard] },
   { path: 'stories/:id', component: StoryComponent, canActivate: [AuthGuard] },
+  { path: 'stories/:id/show', component: StoryShowComponent, canActivate: [AuthGuard] },
 	
 	{ path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
 

@@ -60,6 +60,10 @@ export class StoriesComponent {
   	this.router.navigate(['/stories', id]);
   }
 
+  show(id){
+    this.router.navigate(['/stories', id, 'show']);
+  }
+
   goTo(state){
     if(state == "logout")  this.af.logout()
     else this.router.navigate(['/'+ state])
