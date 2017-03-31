@@ -1,54 +1,59 @@
-<div class="background">
+<div class="wallpaper">
 	<div class="banner"></div>
 	<div class="ui-grid ui-grid-responsive ui-fluid ">
 		<div class="ui-grid-row">
-			<div class="ui-grid-col-2 container">
-				<p-dataList [value]="options" class="container-content">
+			<div class="ui-grid-col-2 menu">
+				<p-dataList [value]="options">
 					<template let-option pTemplate="item">
-						<div class="ui-grid-row option-item" (click)="goTo(option.state)">
-							<div class="ui-grid-col-2">
-								<i [className]="option.class"></i>
+						<div class="container menu-item">
+							<div class="background menu-item-background"></div>
+							<div class="ui-grid-row content" (click)="goTo(option.state)">
+								<div class="ui-grid-col-2 icon">
+									<i [className]="option.class"></i>
+								</div>
+								<div class="ui-grid-col-10 text">{{option.name}}</div>
 							</div>
-							<div class="ui-grid-col-10">{{option.name}}</div>
 						</div>
 					</template>
 				</p-dataList>
 			</div>
-			<div class="ui-grid-col-10 container" >
-				<div class="container-background"></div>
-				<div class="container-content">
+			<div class="ui-grid-col-10 container main" >
+				<div class="background main-background"></div>
+				<div class="content">
 					<p-dataList [value]="stories.get()">
 						<template let-story pTemplate="item">
-							<div class="ui-grid ui-grid-responsive ui-fluid option-item" (click)=goToStory(story.id)>
-								<div class="ui-grid-row">				
+							<div class="ui-grid ui-grid-responsive ui-fluid container story" (click)=goToStory(story.id)>
+								<div class="background story-background"></div>
+								<div class="ui-grid-row content">				
 									<div class="ui-grid-col-8">
 										<div class="ui-grid ui-grid-responsive ui-fluid">
-											<div class="ui-grid-row story-info-name">
+											<div class="ui-grid-row story-name">
 												{{story.name}}
 											</div>
-											<div class="ui-grid-row story-info-desc">
+											<div class="ui-grid-row story-desc">
 												{{story.desc}}
 											</div>
 										</div>
 									</div>
 									<div class="ui-grid-col-2">
 										<div class="ui-grid ui-grid-responsive ui-fluid">
-											<div class="ui-grid-row story-info-other">
+											<div class="ui-grid-row story-other">
 												{{story.type}}
 											</div>
-											<div class="ui-grid-row story-info-other">
+											<div class="ui-grid-row story-other">
 												{{story.messageCount}} messages
 											</div>
 										</div>
 									</div>
-									<div class="ui-grid-col-2">
-										<button pButton type="button" (click)="delete(story.id)" label="Delete"></button>
+									<div class="ui-grid-col-2 button-container">
+										<button pButton icon="fa-eye" class="story-button" type="button"></button>
+										<button pButton icon="fa fa-pencil" class="story-button" type="button"></button>
+										<button pButton icon="fa-trash" class="story-button" type="button" (click)="delete(story.id)"></button>
 									</div>
 								</div>
 							</div>
 						</template>
 					</p-dataList>
-					<button pButton type="button" (click)="showDialog()" label="Create New Story"></button>
 				</div>
 			</div>
 		</div>
@@ -64,7 +69,7 @@
 		<p-spinner name="messageDisplayed" ngModel [min]="0" [max]="100" size="10"></p-spinner>
 		<div>
 			<div class="ui-grid-col-6">
-			<p-spinner name="maskLength" ngModel [min]="0" [max]="100" [disabled]="maskType == 'none'" size="10"></p-spinner>
+				<p-spinner name="maskLength" ngModel [min]="0" [max]="100" [disabled]="maskType == 'none'" size="10"></p-spinner>
 			</div>
 			<div class="ui-grid-col-6">
 				<p-dropdown name="maskType" ngModel [options]="maskTypes"></p-dropdown>

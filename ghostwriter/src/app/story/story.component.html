@@ -1,39 +1,48 @@
-<div class="background">
+<div class="wallpaper">
 	<div class="banner"></div>
 	<div class="ui-grid ui-grid-responsive ui-fluid ">
 		<div class="ui-grid-row">
-			<div class="ui-grid-col-2 container">
-				<p-dataList [value]="options" class="container-content">
+			<div class="ui-grid-col-2 menu">
+				<p-dataList [value]="options">
 					<template let-option pTemplate="item">
-						<div class="ui-grid-row option-item" (click)="goTo(option.state)">
-							<div class="ui-grid-col-2">
-								<i [className]="option.class"></i>
+						<div class="container menu-item">
+							<div class="background menu-item-background"></div>
+							<div class="ui-grid-row content" (click)="goTo(option.state)">
+								<div class="ui-grid-col-2 icon">
+									<i [className]="option.class"></i>
+								</div>
+								<div class="ui-grid-col-10 text">{{option.name}}</div>
 							</div>
-							<div class="ui-grid-col-10">{{option.name}}</div>
 						</div>
 					</template>
 				</p-dataList>
 			</div>
-			<div class="ui-grid-col-10 container" >
-				<div class="container-background"></div>
-				<div class="container-content">
+			<div class="ui-grid-col-10 container main" >
+				<div class="background main-background"></div>
+				<div class="content">
 					<p-dataList [value]="messages.getMasked()">
 						<template let-message pTemplate="item">
-							<div class="ui-grid ui-grid-responsive ui-fluid message">
-								<div class="message-background"></div>
-								<div class="ui-grid-row message-content">
+							<div class="ui-grid ui-grid-responsive ui-fluid container message">
+								<div class="background message-background"></div>
+								<div class="ui-grid-row content message-content">
 									<div class="ui-grid-col-2">
 										<img class="avatar" src="{{message.avatar | async}}">
 									</div>
-									<div class="ui-grid-col-8 message-text">{{message.text}}</div>
-									<div class="ui-grid-col-2 message-author"> by {{message.author | async}}</div>
+									<div class="ui-grid-col-2 author">{{message.author | async}}</div>
+									<div class="ui-grid-col-8 text">{{message.text}}</div>
 								</div>
 							</div>
 						</template>
 					</p-dataList>
 					<form #sendMessageForm="ngForm" (ngSubmit)="send(sendMessageForm)" novalidate>
-						<textarea name="text" required pInputTextarea [(ngModel)]="text"></textarea>
-						<button pButton label="Send"></button>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-10">
+								<textarea name="text" required pInputTextarea [(ngModel)]="text"></textarea>
+							</div>
+							<div class="ui-grid-col-2">
+								<button pButton class="send-buttonn" label="Send"></button>
+							</div>
+						</div>	
 					</form>
 				</div>
 			</div>

@@ -1,10 +1,10 @@
-.background
+.add-button
 {
-	width: 100%;
-	height: 100%;
-	background: url('../../assets/banner.jpg');
-	background-size: 100% 100%; 
-	overflow: auto; 
+	position: absolute;
+	top: 90%;
+	width: 300px;
+	margin-left: 37%;
+	background-color: dimgrey;
 }
 
 .banner
@@ -17,9 +17,27 @@
 	overflow: auto; 
 }
 
-.container
+.button-container
 {
-	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.button-container .story-button
+{
+	margin: 5px;
+	background-color: dimgrey;
+	width: 35px;
+}
+
+input
+{
+	margin-bottom: 5px;
+	width: 270px;
+}
+
+.main
+{
 	height: 78vh;
 	border-radius: 4px;
 	margin-top: 10px;
@@ -28,88 +46,96 @@
 	margin-bottom: 10px;
 }
 
-.container-background
+.main-background
 {
 	background-color: #fae5d3;
-	opacity: 0.3;
-	position: absolute; 
-	top: 0; 
-	left: 0; 
-	height: 78vh;
-	width:100%;
+	opacity: 0.3; 
 }
 
-.container-content
+.menu
 {
-	position: absolute; 
-	top: 0; 
-	left: 0; 
-	height: 100%;
-	width:100%;
+	border-radius: 4px;
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
 }
 
-.option-item{
+.menu .menu-item
+{
+	height: 25px;
+	margin-bottom: 5px;
+	cursor: pointer;
+	color: maroon;
+}
+
+.menu-item .menu-item-background
+{
+	background-color: #fdebd0;
+	opacity: 0.75;
+}
+
+.menu-item .icon
+{
+	padding-top: 3px;
+	padding-left: 10px
+}
+
+.menu-item .text
+{
+	padding-top: 3px;
+	padding-left: 10px
+}
+
+.story{
 	font-size:16px;
 	padding: 10px;
 	border-bottom: 1px solid #D5D5D5;
 	cursor: pointer;
+	height: 55px;
+	margin: 10px;
 }
 
-.option-item div
+.story .content
 {
 	margin-right: 5px;
 }
 
-.stories-info
+.story .story-background
 {
-	position: relative;
-	height: 75vh;
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-.stories-info-background
-{
-	position: absolute; 
-	top: 0; 
-	left: 0; 
 	background-color: #fdebd0;
 	opacity: 0.4;
-	height: 100%;
-	width:100%;
 }
 
-.stories-info-content
+.story .story-desc
 {
-	position: absolute; 
-	top: 0; 
-	left: 0; 
-	height: 100%;
-	width:100%;
+	font-size: 14px;
+	margin-left: 10px;
+	color: indianred;
 }
 
-.story-info-name
+.story .story-name
 {
 	font-size: 18px;
 	font-weight: bold;
-	margin-bottom: 5px;
+	margin: 5px;
+	margin-left: 10px;
+	color: grey;
 }
 
-.story-info-desc
-{
-	font-size: 14px;
-}
-
-.story-info-other
+.story .story-other
 {
 	font-size: 10px;
 	font-style: italic;
-	margin-bottom: 5px;
+	margin: 5px;
+	color: sienna;
 }
 
-input
+.wallpaper
 {
-	margin-bottom: 5px;
-	width: 270px;
+	width: 100%;
+	height: 100%;
+	background: url('../../assets/banner.jpg');
+	background-size: 100% 100%; 
+	overflow: auto; 
 }
