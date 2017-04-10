@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from "./user.service";
+import { MessagesService } from "./messages.service";
 import { AngularFire} from 'angularfire2';
 
 @Injectable()
@@ -9,7 +10,8 @@ export class StoriesService {
 
   constructor(
     public af: AngularFire,
-    public user: UserService) {
+    public user: UserService,
+    public messages: MessagesService) {
   }
 
 
@@ -30,9 +32,12 @@ export class StoriesService {
         maskType: snapshot.maskType,
         maskLength: snapshot.maskLength,
         messagesDisplayed: snapshot.messagesDisplayed,
+        public: snapshot.public,
 
-        messageCount: snapshot.messages != null ? Object.keys(snapshot.messages).length : 0,
-        stared: snapshot.stared != null && snapshot.stared[this.user.getID()] ? true : false
+        usersCount: snapshot.users != null ? Object.keys(snapshot.users).length : 0,
+        messagesCount: snapshot.messages != null ? Object.keys(snapshot.messages).length : 0,
+        stared: snapshot.stared != null && snapshot.stared[this.user.getID()] ? true : false,
+        permission: snapshot.users != null && snapshot.users[this.user.getID()] != null ? snapshot.users[this.user.getID()] : "reader"
       }
 
       if(index == -1) this.stories.push(data)
@@ -47,6 +52,13 @@ export class StoriesService {
 
   getbyId(id){
     return this.stories.find(function(story){return story.id === id});
+  }
+
+  show(id){
+    console.log("Hey")
+    var s = this.stories.find(function(story){return story.id === id});
+    this.messages.load(s)
+    return this.messages.get().map(x => x.text).join("\n")
   }
 
   save(data, id?){

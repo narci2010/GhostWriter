@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { UserService } from "./user.service";
-import { StoriesService } from "./stories.service";
 import { AngularFire } from 'angularfire2';
 
 @Injectable()
@@ -16,13 +15,12 @@ export class MessagesService {
 
   constructor(
     public af: AngularFire,
-    public user: UserService,
-    public stories: StoriesService) {
+    public user: UserService) {
   }
 
-  load(sid){
-    this.story = this.stories.getbyId(sid)
-    this.af.database.list('/stories/' + sid + '/messages').subscribe(snapshots => {
+  load(story){
+    this.story = story
+    this.af.database.list('/stories/' + story.id + '/messages').subscribe(snapshots => {
       this.messages = []
       snapshots.forEach(snapshot => {    
         this.messages.push({
@@ -45,7 +43,7 @@ export class MessagesService {
       author: x.author,
       text: this.format(x.text, this.story.maskType, this.story.maskLength)
     }));
-    if (m.length < this.messages.length) m.unshift({text: " . . . "});
+    if (m.length < this.messages.length) m.unshift({text: (this.messages.length - m.length) + " messages are hidden from you "});
     return m
   }
 

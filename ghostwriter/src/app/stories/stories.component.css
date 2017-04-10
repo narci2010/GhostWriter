@@ -133,15 +133,18 @@ p
 
 .story{
 	font-size:16px;
-	padding: 10px;
 	cursor: pointer;
-	height: 55px;
-	margin: 10px;
+	height: 50px;
+	margin-bottom: 10px;
 }
 
 .story .content
 {
 	margin-right: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 97%;
 }
 
 .story .story-background
@@ -149,6 +152,7 @@ p
 	background-color: white;
 	opacity: 0.8;
 	border-radius: 30px;
+	width: 97%;
 }
 
 .story .story-desc
@@ -182,4 +186,81 @@ p
 	background: url('../../assets/banner.jpg');
 	background-size: 100% 100%; 
 	overflow: auto; 
+}
+
+.green
+{
+	color: darkseagreen;
+}
+
+.red
+{
+	color: crimson;
+}
+
+.star
+{
+	font-size: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: firebrick;
+}
+
+.star-list
+{
+	height: 50px;
+}
+
+.category-icon
+{
+	font-size: 30px;
+	display: flex;
+	justify-content: center;
+	color: firebrick;
+	margin-top: 20px;
+}
+
+.stared
+{
+	height: 100px;
+	margin-top: 5px;
+}
+
+.stared .stared-background
+{
+	background-color: white;
+	opacity: 0.75;
+	border-radius: 30px;
+	width: 97%;
+}
+
+.stared .stared-content
+{
+	width: 97%;
+}
+
+.stared-content .name
+{
+	font-size: 28px;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	color: dimgrey;
+}
+
+.stared-content .down
+{
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.row-down{
+	height: 40%;
+}
+
+.row-up{
+	height: 60%;
 }

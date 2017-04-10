@@ -19,21 +19,45 @@
 			</div>
 			<div class="ui-grid-col-10 container main" >
 				<div class="background main-background"></div>
-				<div class="content">
+				<div class="content title">
+					<div class="background title-background"></div>
+					<div class="content title-content">
+						<div class="ui-grid ui-grid-responsive ui-fluid">
+							<div class="ui-grid-row story-name">
+								{{story.name}}
+							</div>
+							<div class="ui-grid-row story-desc">
+								{{story.desc}}
+							</div>
+							<div class="ui-grid-row story-rules">
+								{{showRules()}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content messages">
 					<p-dataList [value]="messages.getMasked()">
 						<template let-message pTemplate="item">
-							<div class="ui-grid ui-grid-responsive ui-fluid container message">
-								<div class="background message-background"></div>
-								<div class="ui-grid-row content message-content">
-									<div class="ui-grid-col-2">
-										<img class="avatar" src="{{message.avatar | async}}">
+							<div class="ui-grid ui-grid-responsive ui-fluid message">
+								<div *ngIf="message.uid != null" class="ui-grid-row">
+									<div class="ui-grid-col-1 avatar">
+										<img src="{{message.avatar | async}}">
 									</div>
-									<div class="ui-grid-col-2 author">{{message.author | async}}</div>
-									<div class="ui-grid-col-8 text">{{message.text}}</div>
+									<div class="ui-grid-col-11 container message-inner">
+										<div class="background message-inner-background"></div>
+										<div class="content message-inner-text">
+											{{message.text}}
+										</div>
+									</div>
+								</div>
+								<div *ngIf="message.uid == null" class="ui-grid-row warning-hidden">
+									{{message.text}}
 								</div>
 							</div>
 						</template>
 					</p-dataList>
+				</div>
+				<div class="content">
 					<form #sendMessageForm="ngForm" (ngSubmit)="send(sendMessageForm)" novalidate>
 						<div class="ui-grid-row">
 							<div class="ui-grid-col-10">

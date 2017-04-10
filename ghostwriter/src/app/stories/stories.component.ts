@@ -92,15 +92,25 @@ export class StoriesComponent {
     this.stories.unstar(id)
   }
 
-  iconize(type){
-    switch (type) {
-      case "story":
-        return "fa fa-book"
-      case "poem" :
-        return "fa fa-newspaper-o"
+  permissionIconClass(permission){
+    switch (permission) {
+      case "creator":
+        return "fa fa-diamond"
+      case "admin":
+        return "fa fa-key"
+      case "writer":
+        return "fa fa-pencil"   
       default:
-        return "fa fa-question"
+        return "fa fa-eye"
     }
+  }
+
+  typeIconClass(type){
+    return type == "story" ? "fa fa-book" : "fa fa-newspaper-o"
+  }
+
+  isPublic(isPublic){
+    return isPublic ? "green" : "red"
   }
 
 }
