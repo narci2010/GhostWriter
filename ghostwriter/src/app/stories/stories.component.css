@@ -36,6 +36,37 @@ input
 	width: 270px;
 }
 
+.icon-container
+{
+	margin-left: 10px;
+}
+
+.icon-container .fa
+{
+	position: absolute;
+	top: 10px;
+	font-size: 36px;
+	left: 10px;
+	color: coral;
+	width: 40px;
+	text-align: end;
+}
+
+.icon-container	.circle
+{
+	min-width: 20px;
+	height: 20px;
+	background: firebrick;
+	border-radius: 10px;
+	text-align: center;
+	position: absolute;
+	border: 1px solid red;
+	color: white;
+	bottom: 4px;
+	left: 40px;
+	line-height: 20px;
+}
+
 .main
 {
 	height: 78vh;
@@ -46,10 +77,15 @@ input
 	margin-bottom: 10px;
 }
 
-.main-background
+.main .main-background
 {
 	background-color: #fae5d3;
 	opacity: 0.3; 
+}
+
+.main .main-content
+{
+	overflow: auto;
 }
 
 .menu
@@ -87,10 +123,17 @@ input
 	padding-left: 10px
 }
 
+p
+{
+	margin-left: 10px;
+	color: brown;
+	font-size: 18px;
+	font-weight: bold;
+}
+
 .story{
 	font-size:16px;
 	padding: 10px;
-	border-bottom: 1px solid #D5D5D5;
 	cursor: pointer;
 	height: 55px;
 	margin: 10px;
@@ -103,8 +146,9 @@ input
 
 .story .story-background
 {
-	background-color: #fdebd0;
-	opacity: 0.4;
+	background-color: white;
+	opacity: 0.8;
+	border-radius: 30px;
 }
 
 .story .story-desc

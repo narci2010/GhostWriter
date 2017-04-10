@@ -12,6 +12,7 @@ export class StoriesService {
     public user: UserService) {
   }
 
+
   load(){
     this.stories = []
     for(var sid in this.user.get().stories) 
@@ -30,20 +31,22 @@ export class StoriesService {
         maskLength: snapshot.maskLength,
         messagesDisplayed: snapshot.messagesDisplayed,
 
-        messageCount: snapshot.messages != null ? Object.keys(snapshot.messages).length : 0
+        messageCount: snapshot.messages != null ? Object.keys(snapshot.messages).length : 0,
+        stared: snapshot.stared != null && snapshot.stared[this.user.getID()] ? true : false
       }
+
       if(index == -1) this.stories.push(data)
         else this.stories[index] = data;
     })
   }
 
-  getbyId(id){
-    return this.stories.find(function(story){return story.id === id});
-  }
-
-  get(count?){
+  get(count?: number){
     if(count) return this.stories.slice(0, count);
     else return this.stories;
+  }
+
+  getbyId(id){
+    return this.stories.find(function(story){return story.id === id});
   }
 
   save(data, id?){
@@ -66,4 +69,16 @@ export class StoriesService {
     this.af.database.list('/stories').remove(id);
     this.af.database.list('/users/' + this.user.getID() + '/stories').remove(id);
   }
+
+  star(storyId){
+    this.user.star(storyId)
+    this.af.database.object('/stories/' + storyId + "/stared/" + this.user.getID()).set(true)
+  }
+
+  unstar(storyId)
+  {
+    this.user.unstar(storyId)
+    this.af.database.list('/stories/' + storyId + '/stared').remove(this.user.getID())
+  }
+
 }

@@ -36,8 +36,8 @@ export class StoriesComponent {
   ]
 
   storyTypes = [
-    {label: "Story", value: "Story"},
-    {label: "Poem", value: "Poem"}
+    {label: "Story", value: "story"},
+    {label: "Poem", value: "poem"}
   ]
 
   maskTypes = [
@@ -80,6 +80,27 @@ export class StoriesComponent {
   saveStory(f: NgForm){
     this.stories.save(f.value)
     this.displayDialog = false
+  }
+
+  star(id)
+  {
+    this.stories.star(id)
+  }
+
+  unstar(id)
+  {
+    this.stories.unstar(id)
+  }
+
+  iconize(type){
+    switch (type) {
+      case "story":
+        return "fa fa-book"
+      case "poem" :
+        return "fa fa-newspaper-o"
+      default:
+        return "fa fa-question"
+    }
   }
 
 }

@@ -19,12 +19,20 @@
 			</div>
 			<div class="ui-grid-col-10 container main" >
 				<div class="background main-background"></div>
-				<div class="content">
+				<div class="content main-content">
+					<p>Favourite</p>
 					<p-dataList [value]="stories.get()">
 						<template let-story pTemplate="item">
-							<div class="ui-grid ui-grid-responsive ui-fluid container story">
+							<div *ngIf="story.stared" class="ui-grid ui-grid-responsive ui-fluid container story">
 								<div class="background story-background"></div>
-								<div class="ui-grid-row content">				
+								<div class="ui-grid-row content">
+									<div class="ui-grid-col-1 container icon-container">
+										<i class="fa fa-star" (click)=unstar(story.id)></i>
+									</div>
+									<div class="ui-grid-col-1 container icon-container">
+										<i [className]="iconize(story.type)"></i>
+										<div class="circle">{{story.messageCount}}</div>
+									</div>
 									<div class="ui-grid-col-8" (click)=goToStory(story.id)>
 										<div class="ui-grid ui-grid-responsive ui-fluid">
 											<div class="ui-grid-row story-name">
@@ -35,13 +43,37 @@
 											</div>
 										</div>
 									</div>
-									<div class="ui-grid-col-2">
+									<div class="ui-grid-col-2 button-container">
+										<button pButton icon="fa-eye" class="story-button" type="button" (click)=show(story.id)></button>
+										<button pButton icon="fa fa-pencil" class="story-button" type="button"></button>
+										<button pButton icon="fa-trash" class="story-button" type="button" (click)="delete(story.id)"></button>
+									</div>
+								</div>
+							</div>
+						</template>
+					</p-dataList>
+					<hr>
+					<p>Stories</p>
+					<p-dataList [value]="stories.get()">
+						<template let-story pTemplate="item">
+							<div class="ui-grid ui-grid-responsive ui-fluid container story">
+								<div class="background story-background"></div>
+								<div class="ui-grid-row content">
+									<div class="ui-grid-col-1 container icon-container">
+										<i class="fa fa-star" *ngIf="story.stared" (click)=unstar(story.id)></i>
+										<i class="fa fa-star-o" *ngIf="!story.stared" (click)=star(story.id)></i>
+									</div>
+									<div class="ui-grid-col-1 container icon-container">
+										<i [className]="iconize(story.type)"></i>
+										<div class="circle">{{story.messageCount}}</div>
+									</div>
+									<div class="ui-grid-col-8" (click)=goToStory(story.id)>
 										<div class="ui-grid ui-grid-responsive ui-fluid">
-											<div class="ui-grid-row story-other">
-												{{story.type}}
+											<div class="ui-grid-row story-name">
+												{{story.name}}
 											</div>
-											<div class="ui-grid-row story-other">
-												{{story.messageCount}} messages
+											<div class="ui-grid-row story-desc">
+												{{story.desc}}
 											</div>
 										</div>
 									</div>

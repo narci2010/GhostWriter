@@ -13,7 +13,8 @@ export class UserService {
       messages: 0,
       stories: 0
     },
-    stories: {}
+    stories: {},
+    stared: {}
   }
   userRef
   
@@ -34,7 +35,8 @@ export class UserService {
           desc: snapshot.desc,
           stats: snapshot.stats,
           avatar: snapshot.avatar,
-          stories: snapshot.stories
+          stories: snapshot.stories,
+          stared: snapshot.stared
         }
         resolve()
       });
@@ -90,4 +92,14 @@ export class UserService {
 
     this.af.database.list('/users').remove(this.user.id)
   }
+
+  star(storyId){
+    this.af.database.object('/users/' + this.user.id + "/stared/" + storyId).set(true)
+  }
+
+  unstar(storyId)
+  {
+    this.af.database.list('/users/' + this.user.id + '/stared').remove(storyId)
+  }
+
 }

@@ -29,6 +29,7 @@ import { InputTextModule,
         ButtonModule, 
         PasswordModule, 
         DataListModule, 
+        DataGridModule,
         DialogModule, 
         SpinnerModule,
         DropdownModule } from 'primeng/primeng';
@@ -61,6 +62,7 @@ import { SettingsComponent } from './settings/settings.component';
     ButtonModule,
     PasswordModule,
     DataListModule,
+    DataGridModule,
     DialogModule,
     SpinnerModule,
     DropdownModule
