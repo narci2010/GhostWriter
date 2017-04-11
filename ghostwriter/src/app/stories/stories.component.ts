@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
+
+import { UserService } from '../providers/user.service';
 import { StoriesService } from '../providers/stories.service';
 import { AuthService } from '../providers/auth.service';
 
@@ -49,8 +51,9 @@ export class StoriesComponent {
 
   rules = {}
 
-  constructor(public af: AuthService,
+  constructor(private af: AuthService,
               private router: Router,
+              public user: UserService,
   						public stories: StoriesService) { }
 
   ngOnInit() {

@@ -59,7 +59,7 @@ export class MessagesService {
 
   save(data){
     var message = data
-    message.uid = this.user.getID()
+    message.uid = this.user.id
     this.af.database.object('/stories/' + this.story.id + "/messages/" + String(this.messages.length)).set(message)
   }
 

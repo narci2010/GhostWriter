@@ -3,19 +3,17 @@ import {AngularFire} from 'angularfire2';
 
 @Injectable()
 export class UserService {
-  private user = {
-    id: "",
-    avatar: "",
-    email: "",
-    name: "",
-    desc: "",
-    stats: {
-      messages: 0,
-      stories: 0
-    },
-    stories: {},
-    stared: {}
+  id: ""
+  avatar: ""
+  email: ""
+  name: ""
+  desc: ""
+  stats: {
+    messages: 0,
+    stories: 0
   }
+  stories: {}
+  stared: {}
   userRef
   
   constructor(public af: AngularFire) {
@@ -28,27 +26,17 @@ export class UserService {
   load(id) {
     return new Promise((resolve, reject) => {
       this.userRef = this.af.database.object('/users/' + id).subscribe(snapshot => {
-        this.user = {
-          id: snapshot.$key,
-          email: snapshot.email,
-          name: snapshot.name,
-          desc: snapshot.desc,
-          stats: snapshot.stats,
-          avatar: snapshot.avatar,
-          stories: snapshot.stories,
-          stared: snapshot.stared
-        }
+          this.id = snapshot.$key,
+          this.email = snapshot.email,
+          this.name = snapshot.name,
+          this.desc= snapshot.desc,
+          this.stats = snapshot.stats,
+          this.avatar = snapshot.avatar,
+          this.stories = snapshot.stories,
+          this.stared = snapshot.stared
         resolve()
       });
     })
-  }
-
-  get(){
-    return this.user;
-  }
-
-  getID(){
-    return this.user.id;
   }
 
   getAvatar(uid?){
@@ -56,7 +44,7 @@ export class UserService {
       if(uid) this.af.database.object('users/' + uid + '/avatar').subscribe(snapshot => {
         resolve(snapshot.$value)
       });
-        else resolve(this.user.avatar)
+        else resolve(this.avatar)
       });
   }
 
@@ -65,7 +53,7 @@ export class UserService {
       if(uid) this.af.database.object('users/' + uid + '/name').subscribe(snapshot => {
         resolve(snapshot.$value)
       });
-        else resolve(this.user.name)
+        else resolve(this.name)
       });
   }
 
@@ -85,21 +73,21 @@ export class UserService {
   }
 
   save(data){
-    this.af.database.list('/users').update(this.user.id, data);
+    this.af.database.list('/users').update(this.id, data);
   }
 
   delete(){
 
-    this.af.database.list('/users').remove(this.user.id)
+    this.af.database.list('/users').remove(this.id)
   }
 
   star(storyId){
-    this.af.database.object('/users/' + this.user.id + "/stared/" + storyId).set(true)
+    this.af.database.object('/users/' + this.id + "/stared/" + storyId).set(true)
   }
 
   unstar(storyId)
   {
-    this.af.database.list('/users/' + this.user.id + '/stared').remove(storyId)
+    this.af.database.list('/users/' + this.id + '/stared').remove(storyId)
   }
 
 }

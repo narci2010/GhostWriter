@@ -17,7 +17,7 @@ export class StoriesService {
 
   load(){
     this.stories = []
-    for(var sid in this.user.get().stories) 
+    for(var sid in this.user.stories) 
       this.subscribe(sid)
   }
 
@@ -36,8 +36,8 @@ export class StoriesService {
 
         usersCount: snapshot.users != null ? Object.keys(snapshot.users).length : 0,
         messagesCount: snapshot.messages != null ? Object.keys(snapshot.messages).length : 0,
-        stared: snapshot.stared != null && snapshot.stared[this.user.getID()] ? true : false,
-        permission: snapshot.users != null && snapshot.users[this.user.getID()] != null ? snapshot.users[this.user.getID()] : "reader"
+        stared: snapshot.stared != null && snapshot.stared[this.user.id] ? true : false,
+        permission: snapshot.users != null && snapshot.users[this.user.id] != null ? snapshot.users[this.user.id] : "reader"
       }
 
       if(index == -1) this.stories.push(data)
@@ -67,7 +67,7 @@ export class StoriesService {
     if(id) sRef.update(id, data);
     else {
       var sid = sRef.push(data).key;
-      this.af.database.object('/users/' + this.user.getID() + "/stories/" + sid).set("writer")
+      this.af.database.object('/users/' + this.user.id + "/stories/" + sid).set("creator")
       this.subscribe(sid)
     }
   }
@@ -79,18 +79,18 @@ export class StoriesService {
     delete this.storiesRef[id]
 
     this.af.database.list('/stories').remove(id);
-    this.af.database.list('/users/' + this.user.getID() + '/stories').remove(id);
+    this.af.database.list('/users/' + this.user.id + '/stories').remove(id);
   }
 
   star(storyId){
     this.user.star(storyId)
-    this.af.database.object('/stories/' + storyId + "/stared/" + this.user.getID()).set(true)
+    this.af.database.object('/stories/' + storyId + "/stared/" + this.user.id).set(true)
   }
 
   unstar(storyId)
   {
     this.user.unstar(storyId)
-    this.af.database.list('/stories/' + storyId + '/stared').remove(this.user.getID())
+    this.af.database.list('/stories/' + storyId + '/stared').remove(this.user.id)
   }
 
 }
