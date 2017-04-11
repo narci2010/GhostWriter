@@ -58,13 +58,15 @@ export class StoryComponent {
 			else this.router.navigate(['/'+ state]);
 	}
 
-	showRules()
-	{
-		var mask = this.story.messagesDisplayed == 0 ? 
-		"You can see all messages " :
-		"You can see only " + this.story.messagesDisplayed + " recent messages "
-		if(this.story.maskType == "none") mask += " and no mask applyed to them."
-			else mask += " and only " + this.story.maskLength + " " + this.story.maskType + (this.story.length % 10 != 1 ? "s" : "") + " are visible to you.";
-		return mask;
+	show(id){
+		this.router.navigate(['/stories', id, 'show']);
+	}
+
+	typeIconClass(type){
+		return type == "story" ? "fa fa-book" : "fa fa-newspaper-o"
+	}
+
+	isPublic(isPublic){
+		return isPublic ? "c-positive" : "c-negative"
 	}
 }

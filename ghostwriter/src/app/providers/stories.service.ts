@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from "./user.service";
-import { MessagesService } from "./messages.service";
-import { AngularFire} from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 
 @Injectable()
 export class StoriesService {
@@ -10,8 +9,7 @@ export class StoriesService {
 
   constructor(
     public af: AngularFire,
-    public user: UserService,
-    public messages: MessagesService) {
+    public user: UserService) {
   }
 
 
@@ -32,6 +30,7 @@ export class StoriesService {
         maskType: snapshot.maskType,
         maskLength: snapshot.maskLength,
         messagesDisplayed: snapshot.messagesDisplayed,
+        messageVisibility: snapshot.messsageVisibility,
         public: snapshot.public,
 
         usersCount: snapshot.users != null ? Object.keys(snapshot.users).length : 0,
@@ -54,18 +53,13 @@ export class StoriesService {
     return this.stories.find(function(story){return story.id === id});
   }
 
-  show(id){
-    console.log("Hey")
-    var s = this.stories.find(function(story){return story.id === id});
-    this.messages.load(s)
-    return this.messages.get().map(x => x.text).join("\n")
-  }
-
   save(data, id?){
     let sRef = this.af.database.list('/stories');
 
     if(id) sRef.update(id, data);
     else {
+      data.users = {}
+      data.users[this.user.id] = "creator"
       var sid = sRef.push(data).key;
       this.af.database.object('/users/' + this.user.id + "/stories/" + sid).set("creator")
       this.subscribe(sid)

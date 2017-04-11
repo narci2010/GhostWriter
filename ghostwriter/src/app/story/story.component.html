@@ -1,74 +1,95 @@
 <div class="wallpaper">
-	<div class="banner"></div>
+	<div class="banner o-30 bc-primary"></div>
 	<div class="ui-grid ui-grid-responsive ui-fluid ">
 		<div class="ui-grid-row">
 			<div class="ui-grid-col-2 menu">
 				<p-dataList [value]="options">
 					<template let-option pTemplate="item">
 						<div class="container menu-item">
-							<div class="background menu-item-background"></div>
+							<div class="background bc-menu o-75"></div>
 							<div class="ui-grid-row content" (click)="goTo(option.state)">
-								<div class="ui-grid-col-2 icon">
+								<div class="ui-grid-col-2 option-icon">
 									<i [className]="option.class"></i>
 								</div>
-								<div class="ui-grid-col-10 text">{{option.name}}</div>
+								<div class="ui-grid-col-10 option-name">{{option.name}}</div>
 							</div>
 						</div>
 					</template>
 				</p-dataList>
 			</div>
+
 			<div class="ui-grid-col-10 container main" >
-				<div class="background main-background"></div>
-				<div class="content title">
-					<div class="background title-background"></div>
-					<div class="content title-content">
+				<div class="background bc-primary o-30"></div>
+				<div class="content title-section">
+					<div class="background bc-white o-75"></div>
+					<div class="content">
 						<div class="ui-grid ui-grid-responsive ui-fluid">
-							<div class="ui-grid-row story-name">
-								{{story.name}}
+							<div class="ui-grid-row" [ngClass]="isPublic(story.public)">
+								<div class="ui-grid-col-1" (click)="show(story.id)">
+									<i [ngClass]="typeIconClass(story.type)"></i>
+								</div>
+								<div class="ui-grid-col-9 center-content">
+									{{story.name}}
+								</div>
+								<div class="ui-grid-col-2 right-content">
+									<i class="fa fa-user"></i>
+									{{story.usersCount}}
+									<i class="fa fa-comment"></i>
+									{{story.messagesCount}}
+								</div>
 							</div>
-							<div class="ui-grid-row story-desc">
-								{{story.desc}}
-							</div>
-							<div class="ui-grid-row story-rules">
-								{{showRules()}}
+							<div class="ui-grid-row">
+								{{story.desc != "" ? story.desc : "No description"}}
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="content messages">
+
+				<div class="content message-section">
+					<div class="container warning" *ngIf="story.messagesCount == 0">
+						<div class="background warning-background bc-white o-75"></div>
+						<div class="content center-content c-firebrick fs-18">
+							There are no messages yet. Feel free to write something!
+						</div>
+					</div>
+					<div class="container warning" *ngIf="story.messageVisibility != 'all' && story.messagesCount > story.messagesDisplayed">
+						<div class="background warning-background bc-white o-75"></div>
+						<div class="content center-content c-firebrick fs-18">
+							{{story.messagesCount - story.messagesDisplayed}} messages are hidden from you
+						</div>
+					</div>
 					<p-dataList [value]="messages.getMasked()">
 						<template let-message pTemplate="item">
 							<div class="ui-grid ui-grid-responsive ui-fluid message">
 								<div *ngIf="message.uid != null" class="ui-grid-row">
-									<div class="ui-grid-col-1 avatar">
+									<div class="ui-grid-col-1 center-content">
 										<img src="{{message.avatar | async}}">
 									</div>
 									<div class="ui-grid-col-11 container message-inner">
-										<div class="background message-inner-background"></div>
-										<div class="content message-inner-text">
+										<div class="background message-inner-background bc-white o-75"></div>
+										<div class="content message-inner-content">
 											{{message.text}}
 										</div>
 									</div>
-								</div>
-								<div *ngIf="message.uid == null" class="ui-grid-row warning-hidden">
-									{{message.text}}
 								</div>
 							</div>
 						</template>
 					</p-dataList>
 				</div>
-				<div class="content">
+
+				<div class="content form-section">
 					<form #sendMessageForm="ngForm" (ngSubmit)="send(sendMessageForm)" novalidate>
 						<div class="ui-grid-row">
 							<div class="ui-grid-col-10">
 								<textarea name="text" required pInputTextarea [(ngModel)]="text"></textarea>
 							</div>
 							<div class="ui-grid-col-2">
-								<button pButton class="send-buttonn" label="Send"></button>
+								<button pButton class="bc-dimgrey" label="Send"></button>
 							</div>
 						</div>	
 					</form>
 				</div>
+
 			</div>
 		</div>
 	</div>

@@ -124,7 +124,7 @@ export class StoriesComponent {
   }
 
   isPublic(isPublic){
-    return isPublic ? "green" : "red"
+    return isPublic ? "c-positive" : "c-negative"
   }
 
 }

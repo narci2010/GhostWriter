@@ -2,32 +2,28 @@
 {
 	width: 100%;
 	height: 15vh;
-	opacity: 0.3;
-	background-color: #fae5d3;
 	background-size: 100% 100%; 
 	overflow: auto; 
 }
 
-form
+.form-section
 {
-	position: absolute;
-	top: 87%;
+	top: 465px;
+	height: 60px;
 	width: 100%;
 }
 
-form textarea
+.form-section textarea
 {
-	margin: 5px;
 	height: 50px;
+	margin: 5px;
 }
 
-form button
+.form-section button
 {
-	margin: 5px;
-	width: 90%;
-	margin-left: 10px;
 	height: 85%;
-	background-color: dimgrey;
+	width: 90%;
+	margin: 5px 5px 5px 10px;
 }
 
 .main
@@ -40,19 +36,10 @@ form button
 	margin-bottom: 10px;
 }
 
-.main-background
-{
-	background-color: #fae5d3;
-	opacity: 0.3; 
-}
-
 .menu
 {
+	margin: 10px 5px 10px 5px;
 	border-radius: 4px;
-	margin-top: 10px;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 10px;
 }
 
 .menu .menu-item
@@ -63,19 +50,8 @@ form button
 	color: maroon;
 }
 
-.menu-item .menu-item-background
-{
-	background-color: #fdebd0;
-	opacity: 0.75;
-}
-
-.menu-item .icon
-{
-	padding-top: 3px;
-	padding-left: 10px
-}
-
-.menu-item .text
+.menu .menu-item .option-icon,
+.menu .menu-item .option-name
 {
 	padding-top: 3px;
 	padding-left: 10px
@@ -83,93 +59,62 @@ form button
 
 .message
 {
-	height: 50px;
-	margin-top: 5px;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 10px;
+	height: 40px;
+	margin: 0px 5px 10px 5px;
 }
 
-.message .avatar{
-	justify-content: center;
-	display: flex;
-}
-
-.message .avatar img
+.message img
 {
-	height: 50px;
-	border-radius: 25px;
+	height: 40px;
+	border-radius: 20px;
 }
 
 .message .message-inner
 {
-	height: 50px;
+	height: 40px;
 }
 
-.message-inner .message-inner-background
+.message .message-inner .message-inner-background
 {
-	background-color: #fae5d3;
-	opacity: 0.3;
+	border-radius: 10px;
 }
 
-.message-inner .message-inner-text
+.message .message-inner .message-inner-content
 {
 	display: flex;
 	align-items: center;
-	margin-left: 15px;
 	width: 97%;
+	margin-left: 15px;
 }
 
-.messages
+.message-section
 {
-	top: 100px;
-	overflow: auto;
 	height: 350px;
 	width: 99%;
-	z-index: 1002;
-	margin-left: 5px; 
+	top: 90px;
+	margin-left: 5px;
+	overflow: auto;
 }
 
-.title
+.title-section
 {
-	height: 18%;
+	height: 80px;
 	width: 99%;
 	margin: 5px;
 }
 
-.title .title-background
+.title-section .ui-grid-row:first-of-type
 {
-	background-color: white;
-	opacity: 0.75;
-}
-
-.title .title-content
-{
-
-}
-
-.title-content .story-desc
-{
-	font-size: 14px;
-	margin: 10px;
-	color: indianred;
-}
-
-.title-content .story-name
-{
+	margin: 5px 5px 5px 10px;
 	font-size: 20px;
 	font-weight: bold;
-	margin: 5px;
-	margin-left: 10px;
-	color: grey;
 }
 
-.title-content .story-rules
+.title-section .ui-grid-row:last-of-type
 {
-	font-size: 12px;
-	margin-left: 10px;
+	margin: 10px;
+	font-size: 14px;
 	color: indianred;
-	font-style: italic;
 }
 
 .wallpaper
@@ -181,10 +126,13 @@ form button
 	overflow: auto; 
 }
 
-.warning-hidden
+.warning
 {
-	height: 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	height: 40px;
+	margin: 10px;
+}
+
+.warning .warning-background
+{
+	border-radius: 20px;
 }

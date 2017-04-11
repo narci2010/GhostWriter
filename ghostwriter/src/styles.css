@@ -5,18 +5,20 @@ html, body {
 	height: 100%;
 }
 
+/* container - background - content */
+
+.container
+{
+	position: relative;
+}
+
 .background
 {
 	position: absolute; 
 	top: 0; 
 	left: 0; 
 	height: 100%;
-	width:100%;
-}
-
-.container
-{
-	position: relative;
+	width: 100%;
 }
 
 .content
@@ -25,5 +27,119 @@ html, body {
 	top: 0; 
 	left: 0; 
 	height: 100%;
-	width:100%;
+	width: 100%;
+}
+
+/* div contents alignment */
+
+.right-content
+{
+	display: flex;
+	align-items: center;
+	justify-content: right;
+}
+
+.center-content
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* colors */
+
+.c-positive
+{
+	color: darkseagreen;
+}
+
+.c-negative
+{
+	color: crimson;
+}
+
+.c-crimson
+{
+	color: crimson;
+}
+
+.c-darkorange
+{
+	color: darkorange;
+}
+
+.c-darkseagreen
+{
+	color: darkseagreen;
+}
+
+.c-firebrick
+{
+	color: firebrick;
+}
+
+.c-white
+{
+	color: white;
+}
+
+/* background colors */
+
+.bc-primary
+{
+	background-color: #fae5d3;
+}
+
+.bc-menu
+{
+	background-color: #fdebd0;
+}
+
+.bc-dimgrey
+{
+	background-color: dimgrey;
+}
+
+.bc-firebrick
+{
+	background-color: firebrick;
+}
+
+.bc-seagreen
+{
+	background-color: seagreen;
+}
+
+.bc-white
+{
+	background-color: white;
+}
+
+/* opacity */
+
+.o-30
+{
+	opacity: 0.3;
+}
+
+.o-75
+{
+	opacity: 0.75;
+}
+
+/* font-sizes */
+
+.fs-18
+{
+	font-size: 18px;
+}
+
+.fs-26
+{
+	font-size: 26px;
+}
+
+.fs-30
+{
+	font-size: 30px;
 }

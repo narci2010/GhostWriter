@@ -43,7 +43,6 @@ export class MessagesService {
       author: x.author,
       text: this.format(x.text, this.story.maskType, this.story.maskLength)
     }));
-    if (m.length < this.messages.length) m.unshift({text: (this.messages.length - m.length) + " messages are hidden from you "});
     return m
   }
 

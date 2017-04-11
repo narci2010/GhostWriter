@@ -4,9 +4,9 @@ import { StoriesService } from '../providers/stories.service';
 import { AuthService } from '../providers/auth.service';
 
 @Component({
-  selector: 'app-story-show',
-  templateUrl: './story-show.component.html',
-  styleUrls: ['./story-show.component.css']
+	selector: 'app-story-show',
+	templateUrl: './story-show.component.html',
+	styleUrls: ['./story-show.component.css']
 })
 export class StoryShowComponent implements OnInit {
 	story
@@ -35,19 +35,25 @@ export class StoryShowComponent implements OnInit {
 	}
 	]
 
-  constructor(public af: AuthService,
-  						private router: Router,
-							private route: ActivatedRoute,
-							private stories: StoriesService) { }
+	constructor(public af: AuthService,
+		private router: Router,
+		private route: ActivatedRoute,
+		private stories: StoriesService) { }
 
-  ngOnInit() {
-  	this.story = this.stories.getbyId(this.route.snapshot.params['id'])
-  	this.storyText = this.stories.show(this.story.id)
-  }
+	ngOnInit() {
+		this.story = this.stories.getbyId(this.route.snapshot.params['id'])
+	}
 
-  goTo(state){
+	goTo(state){
 		if(state == "logout")  this.af.logout()
 			else this.router.navigate(['/'+ state]);
 	}
 
+	isPublic(isPublic){
+		return isPublic ? "c-positive" : "c-negative"
+	}
+
+	goToStory(id){
+		this.router.navigate(['/stories', id]);
+	}
 }
