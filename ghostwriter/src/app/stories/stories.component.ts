@@ -49,6 +49,13 @@ export class StoriesComponent {
     {label: "sentences", value: "sentence"},
   ]
 
+  visibilityTypes = [
+    {label: "none", value: "none"},
+    {label: "messages", value: "message"},
+    {label: "all", value: "all"}
+  ]
+
+
   rules = {}
 
   constructor(private af: AuthService,
@@ -78,6 +85,10 @@ export class StoriesComponent {
 
   showDialog(){
     this.displayDialog = true
+  }
+
+  closeDialog(){
+    this.displayDialog = false
   }
 
   saveStory(f: NgForm){

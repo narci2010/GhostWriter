@@ -26,6 +26,7 @@ import { firebaseConfig } from './common/firebase.config';
 
 import { InputTextModule,
         InputTextareaModule, 
+        InputSwitchModule,
         ButtonModule, 
         PasswordModule, 
         DataListModule, 
@@ -59,6 +60,7 @@ import { SettingsComponent } from './settings/settings.component';
 
     InputTextModule,
     InputTextareaModule,
+    InputSwitchModule,
     ButtonModule,
     PasswordModule,
     DataListModule,

@@ -17,6 +17,23 @@
 	margin-top: 20px;
 }
 
+.dialog
+{
+	height: 490px;
+	margin: -16px;
+}
+
+.dialog .dialog-background
+{
+	background-color: #fdebd0;
+	opacity: 0.75;
+}
+
+.dialog .dialog-content
+{
+
+}
+
 .dropButton
 {
 	display: flex;
@@ -38,6 +55,86 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+}
+
+.floating-down-dialog-left
+{
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	position: absolute;
+
+	bottom: 15px;
+	left: 15px;
+	background-color: seagreen;
+
+	color: white;
+	font-size: 22px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.floating-down-dialog-right
+{
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	position: absolute;
+
+	bottom: 15px;
+	right: 15px;
+	background-color: firebrick;
+
+	color: white;
+	font-size: 22px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.input-row
+{
+	margin: 10px;
+}
+
+.input-row div:first-of-type
+{
+	padding-right: 5px;
+}
+
+.input-row div:last-of-type
+{
+	padding-left: 5px;
+}
+
+.input-row input,
+.input-row p,
+.input-row textarea
+{
+	width: 100%;
+}
+
+.input-row label
+{
+	font-size: 14px;
+	color: firebrick;
+}
+
+.input-row .text
+{
+	color: brown;
+	font-weight: bold;
+}
+
+.input-row .toggle
+{
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	padding-right: 5px;
 }
 
 .main
